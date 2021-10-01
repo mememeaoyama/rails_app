@@ -25,21 +25,23 @@ class TweetsController < ApplicationController
     url = url.last(11)
     @tweet.youtube_url = url
 
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to @tweet, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @tweet }
+      else
+        format.html { render :new }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
+
     if tweet.save
       redirect_to :action => "index"
     else
       redirect_to :action => "new"
     end
-  end
 
-  respond_to do |format|
-    if @tweet.save
-      format.html { redirect_to @tweet, notice: 'Post was successfully created.' }
-      format.json { render :show, status: :created, location: @tweet }
-    else
-      format.html { render :new }
-      format.json { render json: @tweet.errors, status: :unprocessable_entity }
-    end
+
   end
 
   def show
