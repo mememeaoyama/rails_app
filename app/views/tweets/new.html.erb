@@ -1,0 +1,67 @@
+<h1>TU Tu Ballet</h1>
+<h3>new post</h3>
+
+<%= form_for @tweet do |f| %>
+  <div class="lecture_form">
+  <h3>performance post form</h3>
+  <%= f.label :performance %>
+  <%= f.text_field :perform, placeholder: '演目を入力', class:'perform_field'%>
+  
+<%= f.label :youtube_url %>
+  <%= f.text_field :youtube_url, placeholder: 'URLを入力', class:'youtube_url_field'%>
+  
+    <%= f.label :body %>
+    <%= f.text_field :body, :size => 140 %>
+  
+
+
+  <h5>難しさ</h5>
+  <div class="post_form">
+    <%= f.radio_button :level_difficult, 5 ,id: 'star1'%>
+    <label for="star1"><span class="text">difficult</span>★</label>
+
+    <%= f.radio_button :level_difficult, 4 ,id: 'star2'%>
+    <label for="star2"><span class="text"> </span>★</label>
+
+    <%= f.radio_button :level_difficult, 3 ,id: 'star3'%>
+    <label for="star3"><span class="text">noemal</span>★</label>
+
+    <%= f.radio_button :level_difficult, 2 ,id: 'star4'%>
+    <label for="star4"><span class="text"> </span>★</label>
+
+    <%= f.radio_button :level_difficult, 1 ,id: 'star5'%>
+    <label for="star5"><span class="text">easy</span>★</label>
+  </div>
+
+<h5>人気度</h5>
+  <div class="post_form">
+    <%= f.radio_button :level_popular,  5 ,id: 'star6'%>
+    <label for="star6"><span class="text">popular</span>★</label>
+
+    <%= f.radio_button :level_popular,  4 ,id: 'star7'%>
+    <label for="star7"><span class="text"> </span>★</label>
+
+    <%= f.radio_button :level_popular, 3 ,id: 'star8'%>
+    <label for="star8"><span class="text">normal</span>★</label>
+
+    <%= f.radio_button :level_popular , 2 ,id: 'star9'%>
+    <label for="star9"><span class="text"> </span>★</label>
+
+    <%= f.radio_button :level_popular , 1 ,id: 'star10'%>
+    <label for="star10"><span class="text">miner</span>★</label>
+  </div>
+
+
+  </div>
+  
+  
+  <%= f.submit "Tweetする" %>
+<% end %>
+<%= link_to "Tweet一覧に戻る", tweets_path %>
+
+ <% if user_signed_in? %>
+    <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to "新規登録", new_user_registration_path %></li>
+    <li><%= link_to "ログイン", new_user_session_path %></li>
+  <% end %>
